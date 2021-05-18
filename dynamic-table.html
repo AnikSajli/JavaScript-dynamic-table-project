@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic table</title>
+    <script src="dynamic-table.js"></script>
+    <link rel="stylesheet" href="dynamic-table.css">
+</head>
+<body>
+    <h1 id="title"></h1>
+    <div id="tableData"></div>
+    <!-- <p>Selected cell row:
+        <span id="row"></span>
+    </p>
+    <p>Selected cell column:
+        <span id="column"></span>
+    </p>
+    <p>Cell Value:</p>
+    <input class="input-field" type="text" id="cellValue">
+    <button onclick="onUpdateValue()">Update Value</button> -->
+
+    <input class="browse-file-btn" type="file" id="selectFiles" value="Import" />
+    <button id="import" onclick="onImport('upload')">Upload New Data</button>
+    <button style="visibility: hidden" id="concat" onclick="onImport('concat')">Concat</button> </br>
+    <button id="export" onclick="onExport()">Export Table Data (JSON)</button>
+</body>
+</html>

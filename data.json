@@ -1,0 +1,69 @@
+[
+{
+	"companyName": "ABC",
+	"contact": {
+		"phone": "012",
+		"email": "abc@yopmail.com"
+	},
+	"location":{
+		"country": {
+			"name": "Bangladesh",
+			"code": "BD"
+		},
+		"city": {
+			"name": "Dhaka",
+			"code": "DHK"
+		}
+	},
+	"Language": {
+		"firstLanguage": "Bangla",
+		"secondLanguage": "English"
+	}
+	
+},
+{
+	"companyName": "DEF",
+	"contact": {
+		"phone": "345",
+		"email": "abc@yopmail.com"
+	},
+	"location":{
+		"country": {
+			"name": "India",
+			"code": "IND"
+		},
+		"city": {
+			"name": "Chennai",
+			"code": "CHN"
+		}
+	},
+	"Language": {
+		"firstLanguage": "Hindi",
+		"secondLanguage": "English"
+	}
+	
+},
+
+{
+	"companyName": "orbitax",
+	"contact": {
+		"phone": "678",
+		"email": "abcd@yopmail.com"
+	},
+	"location":{
+		"country": {
+			"name": "Singapore",
+			"code": "SIN"
+		},
+		"city": {
+			"name": "Chennai",
+			"code": "CHN"
+		}
+	},
+	"Language": {
+		"firstLanguage": "English",
+		"secondLanguage": "English"
+	}
+	
+}
+]

@@ -1,0 +1,69 @@
+[
+{
+	"companyName": "xyz",
+	"contact": {
+		"phone": "012",
+		"email": "abc@yopmail.com"
+	},
+	"location":{
+		"country": {
+			"name": "Bangladesh",
+			"code": "BD"
+		},
+		"city": {
+			"name": "Dhaka",
+			"code": "DHK"
+		}
+	},
+	"Language": {
+		"firstLanguage": "Bangla",
+		"secondLanguage": "English"
+	}
+	
+},
+{
+	"companyName": "fff",
+	"contact": {
+		"phone": "345",
+		"email": "abc@yopmail.com"
+	},
+	"location":{
+		"country": {
+			"name": "India",
+			"code": "IND"
+		},
+		"city": {
+			"name": "Chennai",
+			"code": "CHN"
+		}
+	},
+	"Language": {
+		"firstLanguage": "Hindi",
+		"secondLanguage": "English"
+	}
+	
+},
+
+{
+	"companyName": "sss",
+	"contact": {
+		"phone": "678",
+		"email": "abcd@yopmail.com"
+	},
+	"location":{
+		"country": {
+			"name": "Singapore",
+			"code": "SIN"
+		},
+		"city": {
+			"name": "Chennai",
+			"code": "CHN"
+		}
+	},
+	"Language": {
+		"firstLanguage": "English",
+		"secondLanguage": "English"
+	}
+	
+}
+]

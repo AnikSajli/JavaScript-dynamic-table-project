@@ -1,0 +1,38 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.input-field {
+    margin-top: 4px;
+}
+
+.browse-file-btn {
+    margin: 60px 0px 20px 0px;
+}
+
+#warning {
+    color: red;
+}
