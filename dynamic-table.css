@@ -6,19 +6,19 @@ table {
   
 th {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
 td {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
     padding: 8px;
     cursor: pointer;
 }
 
 h1 {
-    text-align: center;;
+    text-align: center;
 }
   
 tr:nth-child(even) {
@@ -33,6 +33,71 @@ tr:nth-child(even) {
     margin: 60px 0px 20px 0px;
 }
 
-#warning {
-    color: red;
+#filter {
+    width: 250px;
+    font-size: 16px;
+    padding: 12px 20px 12px 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    margin-top: 16px;
+}
+
+.action-btn-style {
+    border-radius: 5px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#browseFiles {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 28px 20px;
+    height: 20px;
+}
+
+#insertButton {
+    border-radius: 5px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input{
+    font-size: 16px;
+    font-weight: bold;
+    height: 24px;
+    margin-right: 4px;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.ml-16 {
+    margin-left: 16px;
+}
+
+.mr-28 {
+    margin-right: 28px;
 }

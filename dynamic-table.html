@@ -6,23 +6,50 @@
     <title>Dynamic table</title>
     <script src="dynamic-table.js"></script>
     <link rel="stylesheet" href="dynamic-table.css">
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1 id="title"></h1>
-    <div id="tableData"></div>
-    <!-- <p>Selected cell row:
-        <span id="row"></span>
-    </p>
-    <p>Selected cell column:
-        <span id="column"></span>
-    </p>
-    <p>Cell Value:</p>
-    <input class="input-field" type="text" id="cellValue">
-    <button onclick="onUpdateValue()">Update Value</button> -->
-
-    <input class="browse-file-btn" type="file" id="selectFiles" value="Import" />
-    <button id="import" onclick="onImport('upload')">Upload New Data</button>
-    <button style="visibility: hidden" id="concat" onclick="onImport('concat')">Concat</button> </br>
-    <button id="export" onclick="onExport()">Export Table Data (JSON)</button>
+    <div id="parentDiv">
+        <div class="display-flex space-between">
+            <input 
+            type="file" 
+            id="browseFiles" 
+            value="Import" />
+    
+            <input 
+            class="mr-28"
+            type="text" 
+            id="filter" 
+            onkeyup='searchTable()' 
+            placeholder="Search by any value...">
+        </div>
+       
+        <div class="display-flex space-between">
+            <div class="ml-16">
+                <button 
+                    class="action-btn-style"
+                    id="import" 
+                    onclick="onFileImport('upload')">
+                    Upload New Data
+                </button>
+                <button
+                    class="action-btn-style"
+                    id="concat" 
+                    onclick="onFileImport('concat')">
+                    Concat New Data
+                </button>
+            </div>
+            <button
+                class="action-btn-style mr-28"
+                id="export" onclick="onFileExport()">
+                Export Table Data (JSON)
+            </button>
+        </div>
+        
+        </br>
+        <div class="ml-16" id="newRow"></div>
+        <h1 id="title"></h1>
+        <div id="tableData"></div>
+    </div>
 </body>
 </html>
