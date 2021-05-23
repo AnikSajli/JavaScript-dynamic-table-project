@@ -18,10 +18,12 @@ function extractJSONdata() {
         })
     .then (colData => {
         if (colData.columns) {
+
           columnData = colData.columns;
           sortOrder = new Array(columnData.length).fill(1);
           getHeaders();
           createTableHeaders();
+          createDynamicTable();
         }
         else {
             hideUIComponents();
@@ -81,38 +83,38 @@ function createTitle() {
 }
 
 
-function createDynamicTable(mode) {
-    if (mode === 'upload') {
-        table.innerHTML = '';
-        createTableHeaders();
-    }
+function createDynamicTable() {
+    table.innerHTML = "";
+    createTableHeaders();
+    tableContent = existingData =JSON.parse(getDataFromLocalStorage('tableData'));
+    if (tableContent) {
+        for (let i = 0; i < tableContent.length; i++) {
 
-    for (let i = 0; i < tableContent.length; i++) {
-
-        tr = table.insertRow();
-
-        for (let j = 0; j < columnData.length; j++) {
-            let propertyVal;
-            let propList;
+            tr = table.insertRow();
+    
+            for (let j = 0; j < columnData.length; j++) {
+                let propertyVal;
+                let propList;
+                let tabCell = tr.insertCell();
+                tabCell.contentEditable = 'true';
+                if (columnData[j].cell) {
+                    propList = columnData[j].cell.split('.');
+                }
+                try {
+                    propertyVal = getNestedPropertyValue(tableContent[i], propList);
+                }
+                catch (err) {
+                    propertyVal = '-';
+                }
+                tabCell.innerHTML = propertyVal;
+            }
             let tabCell = tr.insertCell();
-            tabCell.contentEditable = 'true';
-            if (columnData[j].cell) {
-                propList = columnData[j].cell.split('.');
-            }
-            try {
-                propertyVal = getNestedPropertyValue(tableContent[i], propList);
-            }
-            catch (err) {
-                propertyVal = '-';
-            }
-            tabCell.innerHTML = propertyVal;
+            tabCell.addEventListener("click", removeRow);
+            tabCell.innerHTML = 'Delete';
+            let tableDiv = document.getElementById("tableData");
+            tableDiv.appendChild(table);
         }
-        let tabCell = tr.insertCell();
-        tabCell.addEventListener("click", removeRow);
-        tabCell.innerHTML = 'Delete';
     }
-    let tableDiv = document.getElementById("tableData");
-    tableDiv.appendChild(table);
 }
  
 function createRow() {
@@ -137,19 +139,23 @@ function createRow() {
 
 function onInsertData() {
     tr = table.insertRow();
-
+    let newDataObj = {};
     for (let i = 0; i < headers.length; i++) {
         let tabCell = tr.insertCell();
         tabCell.contentEditable = 'true';
         let val;
         if (document.getElementById(headers[i]).value) {
             val = document.getElementById(headers[i]).value;
+            newDataObj[headers[i]] = val;
         }
         else {
             val = '-';
         }
         tabCell.innerHTML = val;
     }
+        tableContent.push(newDataObj);
+        window.localStorage.clear();
+        setDataInLocalStorage('tableData', tableContent);
         let tabCell = tr.insertCell();
         tabCell.contentEditable = 'true';
         tabCell.innerHTML = 'Delete';
@@ -159,6 +165,8 @@ function onInsertData() {
 function removeRow(event) {
     let rowIndex = event.target.parentNode.rowIndex;
     table.deleteRow(rowIndex);
+    tableContent.splice(rowIndex-1,1);
+    setDataInLocalStorage('tableData',JSON.stringify(tableContent));
 }
 
 function getNestedPropertyValue(obj, propertyList) {
@@ -185,17 +193,53 @@ function onFileImport(mode) {
     }
     let fileReader = new FileReader();
     fileReader.readAsText(files.item(0));
-    fileReader.onload = function(e) { 
-    try {
-      tableContent = JSON.parse(e.target.result);
-      createDynamicTable(mode);
-      clearFileInput();
+    fileReader.onload = function(e) {
+        
+        if (mode === 'upload') {
+            tableContent = JSON.parse(e.target.result);
+            replaceExistingTable(tableContent);
+        }
+
+        if (mode === 'concat') {
+            let existingData =JSON.parse(getDataFromLocalStorage('tableData'));
+            let newData = JSON.parse(e.target.result);
+            concatWithExistingTable(existingData, newData);
+        } 
     }
-    catch (error) {
-        alert(error);
-        clearFileInput();
-    }  
+}
+
+function replaceExistingTable(tableContent) {
+    window.localStorage.clear();
+    setDataInLocalStorage('tableData',JSON.stringify(tableContent));
+    createDynamicTable();
+    clearFileInput();
+}
+
+function concatWithExistingTable(existingData, newData) {
+    for(let i = 0; i < newData.length; i++) {
+        let isDuplicate = false;
+        for (let j = 0; j < existingData.length; j++) {
+            if (JSON.stringify(newData[i]) === JSON.stringify(existingData[j])) {
+                console.log(JSON.stringify(newData[i]));
+                console.log(JSON.stringify(existingData[j]));
+                isDuplicate = true;
+            }
+        }
+        if (!isDuplicate) {
+            tableContent.push(newData[i]); 
+        }
     }
+    window.localStorage.clear();
+    setDataInLocalStorage('tableData', JSON.stringify(tableContent));
+    createDynamicTable();
+}
+
+function getDataFromLocalStorage(key) {
+    return window.localStorage.getItem(key);
+}
+
+function setDataInLocalStorage(key, value) {
+    window.localStorage.setItem(key, value);
 }
 
 function clearFileInput() {
@@ -217,6 +261,7 @@ function onFileExport() {
         }
         jsonData.push(rowData);
     }
+    downloadJSONFile(jsonData);
 }
 
 function downloadJSONFile(jsonData) {
@@ -244,9 +289,11 @@ function searchTable() {
             }
         }
         if (filterTxtMatched) {
-            tableRows[i].style.display = "";
+            debugger
+            // tableRows[i].style.display = "";
             filterTxtMatched = false;
         } else {
+            debugger
             tableRows[i].style.display = "none";
         }
     }
@@ -281,7 +328,6 @@ function sortByColumn(event) {
     cellsContent.sort(function (a, b) {
         let result = (a[columnIndex] == b[columnIndex]) ? 0 : ((a[columnIndex] > b[columnIndex]) ?
           sortOrder[columnIndex] : -1 *  sortOrder[columnIndex]);
-        console.log(cellsContent);
         return result;
     });
 
