@@ -20,10 +20,6 @@
 		{
             "header": "Language",
             "cell": "Language.firstLanguage"
-        },
-		{
-            "header": "New column",
-            "cell": "Language.firstLanguage"
         }
     ]
 }

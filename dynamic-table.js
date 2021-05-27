@@ -96,6 +96,7 @@ function createDynamicTable() {
                 let propertyVal;
                 let propList;
                 let tabCell = tr.insertCell();
+                tabCell.setAttribute("data-label", headers[j]);
                 tabCell.contentEditable = 'true';
                 if (columnData[j].cell) {
                     propList = columnData[j].cell.split('.');
@@ -132,6 +133,8 @@ function createRow() {
       insertRowButton.id = 'insertButton';
       insertRowButton.addEventListener("click", onInsertData);
       insertRowButton.textContent = 'Insert New Data';
+    //   let lineBreakElement = document.createElement('br');
+    //   insertRowDiv.appendChild(lineBreakElement);
       insertRowDiv.appendChild(insertRowButton);
       let newRowDiv = document.getElementById('newRow');
       newRowDiv.appendChild(insertRowDiv)
@@ -257,9 +260,13 @@ function onFileExport() {
         let tableRow = table.rows[i];
         let rowData = {};
         for (let j=0; j<tableRow.cells.length-1; j++) {
-            rowData[headers[j]] = tableRow.cells[j].innerHTML;
+            if (tableRow.style.display !== "none") {
+                rowData[headers[j]] = tableRow.cells[j].innerHTML;
+            }
         }
-        jsonData.push(rowData);
+        if (JSON.stringify(rowData) !== '{}') {
+            jsonData.push(rowData);
+        }
     }
     downloadJSONFile(jsonData);
 }
@@ -289,11 +296,9 @@ function searchTable() {
             }
         }
         if (filterTxtMatched) {
-            debugger
-            // tableRows[i].style.display = "";
+            tableRows[i].style.display = "";
             filterTxtMatched = false;
         } else {
-            debugger
             tableRows[i].style.display = "none";
         }
     }

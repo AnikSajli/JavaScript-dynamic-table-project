@@ -1,3 +1,65 @@
+@media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+@media screen and (max-width: 425px) {
+    #export {
+        margin-left: 16px;
+    }
+    #filter {
+        margin-left: 16px;
+    }
+}
+
+#parentDiv {
+
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -34,7 +96,7 @@ tr:nth-child(even) {
 }
 
 #filter {
-    width: 250px;
+    width: 230px;
     font-size: 16px;
     padding: 12px 20px 12px 20px;
     border: 1px solid #ddd;
@@ -91,7 +153,13 @@ input{
 }
 
 .space-between {
+    display: flex;
     justify-content: space-between;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
 }
 
 .ml-16 {
@@ -101,3 +169,34 @@ input{
 .mr-28 {
     margin-right: 28px;
 }
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-100 {
+    width: 90%;
+}
+
+.text-center {
+   text-align: center;
+}
+
+.row-direction {
+    display: flex;
+    flex-direction: row;
+}
+
+.column-direction {
+    display: flex;
+    flex-direction: column;
+}
+
+.w-270 {
+    width: 270px;
+}
+

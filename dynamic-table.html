@@ -8,48 +8,55 @@
     <link rel="stylesheet" href="dynamic-table.css">
     <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
-    <div id="parentDiv">
-        <div class="display-flex space-between">
-            <input 
-            type="file" 
-            id="browseFiles" 
-            value="Import" />
+<body class="center">
+    <div id="parentDiv" 
+         class="w-90 column-direction center">
+
+        <div id="importDiv">
+            <div class="column-direction">
+                <input 
+                type="file" 
+                id="browseFiles" 
+                value="Import" />
     
-            <input 
-            class="mr-28"
-            type="text" 
-            id="filter" 
-            onkeyup='searchTable()' 
-            placeholder="Search by any value...">
-        </div>
-       
-        <div class="display-flex space-between">
-            <div class="ml-16">
-                <button 
-                    class="action-btn-style"
-                    id="import" 
-                    onclick="onFileImport('upload')">
-                    Upload New Data
-                </button>
-                <button
-                    class="action-btn-style"
-                    id="concat" 
-                    onclick="onFileImport('concat')">
-                    Concat New Data
-                </button>
+                <div class="ml-16">
+                    <button 
+                        class="action-btn-style"
+                        id="import" 
+                        onclick="onFileImport('upload')">
+                        Upload New Data
+                    </button>
+                    <button
+                        class="action-btn-style"
+                        id="concat" 
+                        onclick="onFileImport('concat')">
+                        Concat New Data
+                    </button>
+                </div>
             </div>
-            <button
-                class="action-btn-style mr-28"
-                id="export" onclick="onFileExport()">
-                Export Table Data (JSON)
-            </button>
+
+            <div class="column-direction">
+                <button
+                    class="action-btn-style w-270"
+                    id="export" onclick="onFileExport()">
+                    Export Table Data (JSON)
+                </button>
+
+                <input 
+                class="mr-28"
+                type="text" 
+                id="filter" 
+                onkeyup='searchTable()' 
+                placeholder="Search by any value...">
+            </div>
         </div>
-        
+           
         </br>
         <div class="ml-16" id="newRow"></div>
-        <h1 id="title"></h1>
-        <div id="tableData"></div>
+        <div class="column-direction">
+            <h1 id="title"></h1>
+            <div class="w-100" id="tableData"></div>
+        </div>
     </div>
 </body>
 </html>
